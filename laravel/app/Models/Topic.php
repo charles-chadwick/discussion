@@ -11,6 +11,10 @@ class Topic extends Model
 
     const UPDATED_AT = null;
 
+    protected $appends = [
+        'created_at_diff'
+    ];
+
     public function posts() {
         return $this->hasMany(Post::class);
     }

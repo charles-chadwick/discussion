@@ -11,13 +11,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 trait Base
 {
     use HasFactory, SoftDeletes;
-//
-//    protected function createdAt(): Attribute
-//    {
-//        return Attribute::make(
-//            get: fn (string $value) => date('m/d/Y H:ia', strtotime($value)),
-//        );
-//    }
+
+    public function createdAtDiff() : Attribute {
+        return Attribute::make(
+            get: fn ($value, $attributes) => $attributes['created_at']->diffForHumans(),
+        );
+    }
 
     public function createdBy() : BelongsTo {
         return $this->belongsTo(User::class, "created_by", "id");

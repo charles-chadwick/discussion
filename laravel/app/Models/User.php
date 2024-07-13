@@ -49,6 +49,11 @@ class User extends Authenticatable
         ];
     }
 
+    protected $appends = [
+        'full_name',
+        'created_at_diff'
+    ];
+
     protected function fullName(): Attribute
     {
         return Attribute::make(get: function ($value, $attributes) {

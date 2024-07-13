@@ -14,6 +14,10 @@ class Post extends Model
 
     const UPDATED_AT = null;
 
+    protected $appends = [
+        'created_at_diff'
+    ];
+
     public function topic() : BelongsTo {
         return $this->belongsTo(Topic::class);
     }
