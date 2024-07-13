@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DiscussController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::prefix('discuss')->group(function () {
+   Route::get('/', [DiscussController::class, 'index'])->name('discuss.topics');
+   Route::get('/{topic}/posts', [DiscussController::class, 'posts'])->name('discuss.posts');
 });
 
 require __DIR__.'/auth.php';
