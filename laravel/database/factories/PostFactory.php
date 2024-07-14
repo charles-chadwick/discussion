@@ -19,7 +19,7 @@ class PostFactory extends Factory
     {
         return [
             'topic_id' => null,
-            'content' => '<p>'.implode('</p><p>', fake()->paragraphs(rand(1, 6))).'</p>',
+            'content' => implode("<br /><br />", fake()->paragraphs(rand(1, 6))),
             'created_at' => fake()->dateTimeBetween("-2 years", "-10 minutes"),
             'created_by' => 1,
         ];

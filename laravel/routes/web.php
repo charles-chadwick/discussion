@@ -26,8 +26,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('discuss')->group(function () {
-   Route::get('/', [DiscussController::class, 'index'])->name('discuss.topics');
-   Route::get('/{topic}/posts', [DiscussController::class, 'posts'])->name('discuss.posts');
+   Route::get('/', [DiscussController::class, 'topics'])->name('discuss.topics');
+   Route::get('/{topic}/posts', [DiscussController::class, 'topics'])->name('discuss.posts');
 });
 
 require __DIR__.'/auth.php';
