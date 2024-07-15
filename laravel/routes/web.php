@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DiscussController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TopicController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,10 @@ Route::middleware('auth')->group(function () {
 Route::prefix('discuss')->group(function () {
    Route::get('/', [DiscussController::class, 'topics'])->name('discuss.topics');
    Route::get('/{topic}/posts', [DiscussController::class, 'topics'])->name('discuss.posts');
+});
+
+Route::prefix('topic')->group(function () {
+    Route::delete('/{topic}', [TopicController::class, 'destroy'])->name('topic.destroy');
 });
 
 require __DIR__.'/auth.php';
