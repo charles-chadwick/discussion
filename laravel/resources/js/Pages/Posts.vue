@@ -6,7 +6,7 @@ import UserDetails from "../Components/UserDetails.vue";
 import PostDetails from "./Partials/PostDetails.vue";
 
 defineProps({
-    topics: {
+    posts: {
         type: Object
     }
 })
@@ -15,8 +15,7 @@ defineProps({
 </script>
 
 <template>
-    <Pagination :links="topics.links"/>
-    <div v-for="topic in topics.data" :key="topic.id">
+    <div v-for="post in posts" :key="posts.id">
         <div class="mx-auto max-w-full py-2 sm:px-2 lg:px-4">
             <div class="mx-auto max-w-none">
                 <div class="overflow-hidden bg-white sm:rounded-lg shadow shadow-gray-300">
@@ -36,7 +35,7 @@ defineProps({
                     </div>
 
                     <div class="px-4 pb-5 text-gray-400 sm:p-6 sm:pt-0">
-                        <p>{{ topic.posts[0].preview }}</p>
+                        <p>{{ topic.posts[0].content }}</p>
                     </div>
                 </div>
             </div>
