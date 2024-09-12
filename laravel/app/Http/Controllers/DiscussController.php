@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Topic;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DiscussController extends Controller
@@ -32,11 +30,12 @@ class DiscussController extends Controller
     public function posts(Topic $topic)
     {
         return Inertia::render("Posts", [
-            // this is for the topics
-            "posts"   => Post::with(['topic', 'topic.createdBy', 'createdBy'])
-                             ->findOrFail($topic->id),
-            // and this is because we just want to preview the first post
-            'preview' => false
+            "topic" => Topic::with(['createdBy'])
+                            ->where('id', $topic->id)
+                            ->first(),
+            "posts" => Post::with(['createdBy'])
+                           ->where('topic_id', $topic->id)
+                           ->get()
         ]);
     }
 }
