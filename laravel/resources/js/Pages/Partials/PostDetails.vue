@@ -1,22 +1,18 @@
 <script setup>
+import DateTime from "../../Components/DateTime.vue";
+import UserDetails from "../../Components/UserDetails.vue";
+
 defineProps({
-    title: {
+    created_at: {
         type: String
     },
-    post_count: {
-        type: Number
-    },
-    id: {
-        type: Number
+    user: {
+        type: Object
     }
 })
 </script>
 
 <template>
-<p class="text-sm font-semibold text-gray-900">
-    <a :href="`discuss/${ id }`" class="hover:underline">{{ title }}</a>
-</p>
-<p class="text-sm font-normal text-gray-400">
-    {{ post_count }} Posts
-</p>
+    <p class="whitespace-nowrap">Posted <DateTime :datetime="created_at" /> by <UserDetails :user="user" /></p>
+
 </template>

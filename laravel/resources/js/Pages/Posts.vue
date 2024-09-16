@@ -1,9 +1,8 @@
 <script setup>
 import {ref} from 'vue';
 import Pagination from "../Components/Pagination.vue";
-import DateTime from "../Components/DateTime.vue";
-import UserDetails from "../Components/UserDetails.vue";
 import PostDetails from "./Partials/PostDetails.vue";
+import TopicDetails from "./Partials/TopicDetails.vue";
 
 defineProps({
     topic: {
@@ -18,30 +17,20 @@ defineProps({
 </script>
 
 <template>
-    <div class="bg-white px-4 py-5 sm:px-6">
-        <div class="flex space-x-3">
+    <ul role="list" class="divide-y divide-gray-100">
+        <li class="flex items-center justify-between gap-x-6 py-2">
+            <TopicDetails :topic="topic" />
 
-            <div class="flex-shrink-0">
-                <PostDetails :post_count="topic.post_count" :title="topic.title" :id="topic.id" />
-            </div>
-
-            <div class="w-full">
-                <DateTime class="text-right" :datetime="topic.created_at" />
-                <UserDetails :user="topic.created_by" />
-            </div>
-        </div>
-    </div>
-    <div v-for="post in posts" :key="post.id">
-        <div class="mx-auto max-w-full py-2 sm:px-2 lg:px-4">
-            <div class="mx-auto max-w-none">
-                <div class="overflow-hidden bg-white sm:rounded-lg shadow shadow-gray-300">
-
-                    <div class="px-4 pb-5 text-gray-400 sm:p-6 sm:pt-0">
-                        <p>{{ post.content }}</p>
-                    </div>
+        </li>
+        <li class="flex items-center justify-between gap-x-6 py-2 shadow rounded" v-for="post in posts" :key="post.id">
+            <div class="min-w-0">
+                <div v-html="post.content" class="p-4"></div>
+                <div class="mt-1 flex items-center gap-x-2 leading-5">
+                <PostDetails :created_at="post.created_at" :created_at_diff="post.created_at_diff" :user="post.created_by" />
                 </div>
             </div>
-        </div>
-    </div>
+        </li>
+
+    </ul>
 
 </template>
