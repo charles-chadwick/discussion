@@ -10,7 +10,7 @@ class DiscussController extends Controller
 {
     public function index()
     {
-        return Inertia::render("Discuss", [
+        return Inertia::render("Topics", [
             // this is for the topics
             "topics"  => Topic::with(["posts", "posts.createdBy", "createdBy"])
                 // when there is a search, we need to run it
