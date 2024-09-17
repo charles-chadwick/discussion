@@ -5,6 +5,7 @@ import DateTime from "../Components/DateTime.vue";
 import UserDetails from "../Components/UserDetails.vue";
 import PostDetails from "./Partials/PostDetails.vue";
 import TopicDetails from "./Partials/TopicDetails.vue";
+import App from "../Layouts/App.vue";
 
 defineProps({
     topics: {
@@ -16,7 +17,7 @@ defineProps({
 </script>
 
 <template>
-    <Pagination :links="topics.links"/>
+    <App>
     <ul role="list" class="divide-y divide-gray-100">
         <li class="flex items-center justify-between gap-x-6 py-5" v-for="topic in topics.data" :key="topic.id">
             <div class="min-w-0">
@@ -33,4 +34,5 @@ defineProps({
     </ul>
 
     <Pagination :links="topics.links"/>
+    </App>
 </template>

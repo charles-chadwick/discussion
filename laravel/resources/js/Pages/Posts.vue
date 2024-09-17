@@ -3,6 +3,7 @@ import {ref} from 'vue';
 import Pagination from "../Components/Pagination.vue";
 import PostDetails from "./Partials/PostDetails.vue";
 import TopicDetails from "./Partials/TopicDetails.vue";
+import App from "../Layouts/App.vue";
 
 defineProps({
     topic: {
@@ -17,6 +18,7 @@ defineProps({
 </script>
 
 <template>
+    <App>
     <ul role="list" class="divide-y divide-gray-100">
         <li class="flex items-center justify-between gap-x-6 py-2">
             <TopicDetails :topic="topic" />
@@ -30,7 +32,6 @@ defineProps({
                 </div>
             </div>
         </li>
-
     </ul>
-
+    </App>
 </template>
